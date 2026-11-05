@@ -45,7 +45,7 @@ public abstract class MixinCommandDispatcher<S> {
 
     @Unique
     private SuggestionsBuilder buildFromEvent(int start, String fullInput, String beforeCursor, ArrayList<String> existing) {
-        TabCompletionEvent tabCompletionEvent = new TabCompletionEvent(fullInput, beforeCursor, existing);
+        TabCompletionEvent tabCompletionEvent = new TabCompletionEvent(fullInput, beforeCursor, existing, start);
         tabCompletionEvent.post();
         String[] additional = tabCompletionEvent.intoSuggestionArray();
         if (additional == null) return null;
