@@ -1,7 +1,7 @@
 package at.hannibal2.skyhanni.utils.compat
 
-import com.mojang.renderpearl.api.pipeline.RenderPipeline
-import net.minecraft.client.renderer.RenderPipelines
+//~ if >= 26.4 'renderer.RenderPipelines' -> 'gui.GuiPipeline'
+import net.minecraft.client.gui.GuiPipeline
 
 //? if < 26.2 {
 /*import com.mojang.blaze3d.pipeline.RenderTarget
@@ -20,7 +20,8 @@ object RenderCompat {
     //~ if < 26.2 '0.0' -> '1.0'
     const val CLEAR_DEPTH = 0.0
 
-    fun getMinecraftGuiTextured(): RenderPipeline = RenderPipelines.GUI_TEXTURED
+    //~ if >= 26.4 'RenderPipelines.GUI_TEXTURED' -> 'GuiPipeline.TEXTURED'
+    fun getMinecraftGuiTextured() = GuiPipeline.TEXTURED
 
     //? if < 26.2 {
     /*fun RenderPass.enableRenderPassScissorStateIfAble() {
