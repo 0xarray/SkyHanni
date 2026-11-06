@@ -29,7 +29,11 @@ class SkyHanniRoundedRectRenderState(
 
     override fun writeVertex(consumer: VertexConsumer, vx: Float, vy: Float, isTop: Boolean) {
         with(params) {
-        consumer.addVertex(matXScale * vx + matXTranslation, matYScale * vy + matYTranslation, roundedUniformIndex.toFloat())
+        consumer.addVertex(
+            matXScale * vx + matXTranslation,
+            matYScale * vy + matYTranslation,
+            roundedUniformIndex.toFloat(),
+        )
             .setColor(if (isTop) color else bottomColor)
         }
     }

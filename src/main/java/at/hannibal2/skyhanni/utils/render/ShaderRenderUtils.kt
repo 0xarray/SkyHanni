@@ -221,7 +221,7 @@ object ShaderRenderUtils {
      * [GuiRenderState] queue, ensuring correct ordering over all other GUI elements.
      */
     fun drawRoundRectDeferred(x: Int, y: Int, width: Int, height: Int, color: Int, radius: Int = 10, smoothness: Float = 1f) {
-        DrawContextUtils.addGuiElement(buildRoundedRectState(x, y, width, height, color, radius, smoothness))
+        DrawContextUtils.addSkyHanniShape(buildRoundedRectState(x, y, width, height, color, radius, smoothness))
     }
 
     /**
@@ -241,7 +241,7 @@ object ShaderRenderUtils {
         radius: Int = 10,
         smoothness: Float = 1f,
     ) {
-        DrawContextUtils.addGuiElement(
+        DrawContextUtils.addSkyHanniShape(
             buildRoundedRectGradientState(x, y, width, height, topColor, bottomColor, radius, smoothness)
         )
     }
@@ -260,7 +260,7 @@ object ShaderRenderUtils {
         blur: Float = 0.7f,
     ) {
         val state = buildRoundedRectOutlineState(x, y, width, height, topColor, bottomColor, borderThickness, radius, blur)
-        DrawContextUtils.addGuiElement(state)
+        DrawContextUtils.addSkyHanniShape(state)
     }
 
     /**
@@ -282,7 +282,7 @@ object ShaderRenderUtils {
     ) {
         if (radius <= 0) return GuiRenderUtils.drawTexturedRect(x, y, width, height, texture = texture, alpha = alpha)
         val state = buildRoundedTexturedRectState(x, y, width, height, radius, smoothness, texture, alpha)
-        DrawContextUtils.addGuiElement(state)
+        DrawContextUtils.addSkyHanniShape(state)
     }
 
     /**
@@ -306,7 +306,7 @@ object ShaderRenderUtils {
         angle1: Float = 7.0f,
         angle2: Float = 7.0f,
     ) {
-        DrawContextUtils.addGuiElement(buildCircleState(x, y, radius, color.rgb, smoothness, angle1, angle2))
+        DrawContextUtils.addSkyHanniShape(buildCircleState(x, y, radius, color.rgb, smoothness, angle1, angle2))
     }
 
     /**
@@ -340,7 +340,7 @@ object ShaderRenderUtils {
             x, y, radius, startColor.destructToFloatArray(), endColor.destructToFloatArray(),
             angle - Math.PI.toFloat(), progress, phaseOffset, smoothness, reverse,
         )
-        DrawContextUtils.addGuiElement(state)
+        DrawContextUtils.addSkyHanniShape(state)
     }
 
     private fun buildRoundedRectState(

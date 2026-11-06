@@ -3,6 +3,7 @@ package at.hannibal2.skyhanni.utils.render.states
 import com.mojang.blaze3d.vertex.VertexConsumer
 import net.minecraft.client.gui.navigation.ScreenRectangle
 import net.minecraft.client.gui.render.TextureSetup
+import net.minecraft.client.Minecraft
 
 abstract class AbstractSkyHanniRoundedShapeRenderState(
     protected val x: Int,
@@ -34,6 +35,9 @@ abstract class AbstractSkyHanniRoundedShapeRenderState(
         writeVertex(consumer, (x + width + p), (y + height + p), isTop = false)
         writeVertex(consumer, (x + width + p), (y - p), isTop = true)
     }
+
+    protected fun scaledCoordinate(value: Float): Float =
+        value * Minecraft.getInstance().window.guiScale
 
     protected open fun writeVertex(consumer: VertexConsumer, vx: Float, vy: Float, isTop: Boolean) {
         error("${this::class.simpleName} must override writeVertex or buildVertices")

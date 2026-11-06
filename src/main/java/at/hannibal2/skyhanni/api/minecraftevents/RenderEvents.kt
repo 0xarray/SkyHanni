@@ -9,6 +9,7 @@ import at.hannibal2.skyhanni.skyhannimodule.SkyHanniModule
 import at.hannibal2.skyhanni.utils.compat.MinecraftCompat
 import at.hannibal2.skyhanni.utils.render.item.SkyHanniItemRenderCoordinator
 import at.hannibal2.skyhanni.utils.render.item.SkyHanniPipCoordinatorRenderer
+import at.hannibal2.skyhanni.utils.render.states.SkyHanniShapePipRenderer
 import net.fabricmc.fabric.api.client.rendering.v1.PictureInPictureRendererRegistry
 import net.fabricmc.fabric.api.client.rendering.v1.hud.HudElementRegistry
 import net.fabricmc.fabric.api.client.rendering.v1.hud.VanillaHudElements
@@ -29,6 +30,12 @@ object RenderEvents {
 
         PictureInPictureRendererRegistry.register { ctx ->
             SkyHanniPipCoordinatorRenderer(
+                //? if < 26.2
+                //ctx.bufferSource()
+            )
+        }
+        PictureInPictureRendererRegistry.register { ctx ->
+            SkyHanniShapePipRenderer(
                 //? if < 26.2
                 //ctx.bufferSource()
             )

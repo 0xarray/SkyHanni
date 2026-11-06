@@ -29,6 +29,7 @@ class SkyHanniRoundedTexturedRectRenderState(
 
     override val padding = 5
     override fun pipeline() = SkyHanniRenderPipeline.ROUNDED_TEXTURED_RECT_DEFERRED()
+    override fun textureIdentifier() = texture
 
     override fun textureSetup(): TextureSetup {
         val fetchTexture = Minecraft.getInstance().textureManager.getTexture(texture)
@@ -45,7 +46,11 @@ class SkyHanniRoundedTexturedRectRenderState(
     }
 
     private fun writeTexturedVertex(consumer: VertexConsumer, vx: Float, vy: Float, u: Float, v: Float) = with(params) {
-        consumer.addVertex(matXScale * vx + matXTranslation, matYScale * vy + matYTranslation, roundedUniformIndex.toFloat())
+        consumer.addVertex(
+            matXScale * vx + matXTranslation,
+            matYScale * vy + matYTranslation,
+            roundedUniformIndex.toFloat(),
+        )
             .setUv(u, v)
     }
 }

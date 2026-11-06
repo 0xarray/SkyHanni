@@ -237,7 +237,7 @@ fun DependencyHandler.includeImplementation(dep: Any) {
 
 afterEvaluate {
     loom.runs.named("client") {
-        programArguments.addAll("--quickPlayMultiplayer", "hypixel.net")
+//        programArguments.addAll("--quickPlayMultiplayer", "hypixel.net")
     }
 
     ksp {

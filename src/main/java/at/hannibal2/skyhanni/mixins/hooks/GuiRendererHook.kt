@@ -41,9 +41,13 @@ object GuiRendererHook {
         startColor: FloatArray = floatArrayOf(),
         endColor: FloatArray = floatArrayOf(),
     ): Int {
+        val guiScale = Minecraft.getInstance().window.guiScale.toFloat()
         return roundedUniform.add(
-            rounded0,
-            rounded1,
+            rounded0.map { it * guiScale }.toFloatArray(),
+            rounded1.copyOf().also {
+                it[0] *= guiScale
+                it[1] *= guiScale
+            },
             if (gradient0.isEmpty()) floatArrayOf(0f, 0f, 0f, 0f) else gradient0,
             if (startColor.isEmpty()) floatArrayOf(0f, 0f, 0f, 0f) else startColor,
             if (endColor.isEmpty()) floatArrayOf(0f, 0f, 0f, 0f) else endColor,
@@ -54,7 +58,18 @@ object GuiRendererHook {
         if (roundedBufferSlice == null) {
             roundedBufferSlice = roundedUniform.write()
         }
+
         roundedBufferSlice?.let { renderPass.setUniform("SkyHanniRoundedUniforms", it) }
+    }
+
+    fun insertRoundedSetUniform(renderPass: RenderPass, pipeline: RenderPipeline) {
+        if (pipeline != SkyHanniRenderPipeline.ROUNDED_RECT_DEFERRED.invoke() &&
+            pipeline != SkyHanniRenderPipeline.ROUNDED_RECT_OUTLINE_DEFERRED.invoke() &&
+            pipeline != SkyHanniRenderPipeline.CIRCLE_DEFERRED.invoke() &&
+            pipeline != SkyHanniRenderPipeline.ROUNDED_TEXTURED_RECT_DEFERRED.invoke() &&
+            pipeline != SkyHanniRenderPipeline.RADIAL_GRADIENT_CIRCLE_DEFERRED.invoke()
+        ) return
+        insertRoundedSetUniform(renderPass)
     }
 
     fun computeChromaBufferSlice() {

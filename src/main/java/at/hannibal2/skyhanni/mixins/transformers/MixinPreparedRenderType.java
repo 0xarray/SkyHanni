@@ -34,6 +34,7 @@ public abstract class MixinPreparedRenderType {
     ) {
         PreparedRenderType renderType = (PreparedRenderType) (Object) this;
         GuiRendererHook.INSTANCE.insertChromaSetUniform(renderPass, renderType.pipeline());
+        GuiRendererHook.INSTANCE.insertRoundedSetUniform(renderPass, renderType.pipeline());
     }
 }
 //?}

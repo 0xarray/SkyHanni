@@ -4,6 +4,8 @@ import at.hannibal2.skyhanni.test.command.ErrorManager
 import at.hannibal2.skyhanni.utils.SafeItemStack
 import net.minecraft.client.gui.GuiGraphicsExtractor
 import net.minecraft.client.renderer.state.gui.GuiElementRenderState
+import at.hannibal2.skyhanni.utils.render.states.SkyHanniRenderState
+import at.hannibal2.skyhanni.utils.render.states.SkyHanniShapePipState
 
 /**
  * Utils methods related to DrawContext, also known on 1.8 as GLStateManager
@@ -11,6 +13,7 @@ import net.minecraft.client.renderer.state.gui.GuiElementRenderState
 object DrawContextUtils {
 
     private var _drawContext: GuiGraphicsExtractor? = null
+    private var shapePipState: SkyHanniShapePipState? = null
 
     /**
      * This is used to track the depth of the render context stack.
@@ -34,11 +37,13 @@ object DrawContextUtils {
             return
         }
         _drawContext = context
+        shapePipState = null
     }
 
     fun clearContext() {
         if (renderDepth == 1) {
             _drawContext = null
+            shapePipState = null
             renderDepth = 0
         } else if (renderDepth > 1) {
             renderDepth--
@@ -141,5 +146,13 @@ object DrawContextUtils {
 
     fun addGuiElement(state: GuiElementRenderState) {
         drawContext.guiRenderState.addGuiElement(state)
+    }
+
+    fun addSkyHanniShape(state: SkyHanniRenderState) {
+        val pipState = shapePipState ?: SkyHanniShapePipState().also {
+            shapePipState = it
+            drawContext.guiRenderState.addPicturesInPictureState(it)
+        }
+        pipState.shapes += state
     }
 }

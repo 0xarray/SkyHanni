@@ -43,6 +43,10 @@ class SkyHanniRadialGradientCircleRenderState(
     }
 
     private fun writeGradientVertex(consumer: VertexConsumer, vx: Float, vy: Float) = with(params) {
-        consumer.addVertex(matXScale * vx + matXTranslation, matYScale * vy + matYTranslation, roundedUniformIndex.toFloat())
+        consumer.addVertex(
+            matXScale * vx + matXTranslation,
+            matYScale * vy + matYTranslation,
+            roundedUniformIndex.toFloat(),
+        )
     }
 }
