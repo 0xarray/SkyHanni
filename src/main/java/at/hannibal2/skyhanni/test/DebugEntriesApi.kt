@@ -15,7 +15,7 @@ import org.jetbrains.annotations.ApiStatus
 
 //? if < 26.4
 // import net.minecraft.client.gui.components.debug.DebugScreenEntries
-//?} else
+//? else
 import net.minecraft.client.gui.components.debug.DebugGroup
 
 @SkyHanniModule
