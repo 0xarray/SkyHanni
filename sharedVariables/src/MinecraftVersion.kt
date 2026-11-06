@@ -17,7 +17,7 @@ enum class MinecraftVersion(
     MC26200("26.2", 25),
     MC26300("26.3", 25),
     MC26400("26.4", 25,
-        versionNameOverride = "26.4-snapshot-5",
+        versionNameOverride = "26.4-snapshot-7",
         moulconfigMinecraftVersionOverride = "26.3",
     )
     ;
