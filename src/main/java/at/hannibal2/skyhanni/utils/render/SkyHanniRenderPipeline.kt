@@ -45,6 +45,7 @@ enum class SkyHanniRenderPipeline(
         snippet = RenderPipelines.LINES_SNIPPET,
         vFormat = PosColorNormal,
         vDrawMode = PrimitiveTopology.LINES,
+        blend = BlendFunction.TRANSLUCENT,
         //? if iris_compat
         //irisProgram = IrisProgram.LINES,
     ),
@@ -52,6 +53,7 @@ enum class SkyHanniRenderPipeline(
         snippet = RenderPipelines.LINES_SNIPPET,
         vFormat = PosColorNormal,
         vDrawMode = PrimitiveTopology.LINES,
+        blend = BlendFunction.TRANSLUCENT,
         depthWrite = false,
         //? if iris_compat
         //irisProgram = IrisProgram.LINES,
